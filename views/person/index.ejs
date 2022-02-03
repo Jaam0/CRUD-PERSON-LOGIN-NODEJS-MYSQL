@@ -1,0 +1,38 @@
+<%- include('../layouts/header') %>
+
+<div class="row">
+    <div class="col-lg-6">
+        <table id="example" class="table table-hover table-striped display" style="width: 100%;">
+            <thead>
+                <tr class="fw-bold">
+                   <td>ID</td>
+                   <td>FIRST NAME</td>
+                   <td>LAST NAME</td>
+                   <td>GENDER</td>
+                   <td>AGE</td>
+                   <td>NATIONALITY</td>
+                   <td>STATUS</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <% rows.forEach(e=>{ %>
+                        <td><%= e.ID %></td>
+                        <td><%= e.FIRST_NAME %></td>
+                        <td><%= e.LAST_NAME %></td>
+                        <td><%= e.GENDER %></td>
+                        <td><%= e.AGE %></td>
+                        <td><%= e.NATIONALITY %></td>
+                        <td><%= e.STATUS %></td>
+                    <% }) %>
+                </tr>
+            </tbody>
+            <tfoot>
+        
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<%- include('../layouts/footer') %>
+
