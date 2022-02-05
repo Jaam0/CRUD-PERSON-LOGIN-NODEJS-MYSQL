@@ -1,0 +1,13 @@
+:root{
+    --main-bg-mycolor: #52b848;
+}
+
+body {
+    padding: 0;
+    /* background-color: #; */
+}
+
+.btn-button {
+    background-color: var(--main-bg-mycolor);
+    color: white;
+}

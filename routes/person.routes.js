@@ -1,12 +1,16 @@
 const {Router} = require('express');
-const {showAll,save} = require('../controllers/person.controller');
+const {showAll,save,update, showById,drop} = require('../controllers/person.controller');
 // const {validarCampos,validarJWT,isAdminRole,haveRole} = require('../middlewares/index');
 
 
 const router = Router();
 
 router.get('/',showAll);
+router.get('/:id',showById);
 router.post('/save',save);
+// router.put('/:id',update);
+router.post('/update',update);
+router.get('/delete/:id',drop)
 // router.post('/save',(req,res)=>{
 //     res.send(req.body);
 // });

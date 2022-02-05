@@ -1,0 +1,61 @@
+<!--Inicio Modal-->
+<div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-11 text-center">
+                <h2 class="modal-title" id="exampleModalLabel">New person</h2>
+            </div>
+            <div class="col-1">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="modal-body mx-4">
+            <form action="../person/save" method="POST" class="row g-3" id="formulario">
+                <div class="col-md-6">
+                  <input id="id" name="id"  value="id" hidden>
+                    <label for="inputEmail4" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputState" class="form-label">Gender</label>
+                    <select id="gender" name="gender" class="form-select">
+                      <option selected>- None -</option>
+                      <option>M</option>
+                      <option>F</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Age</label>
+                    <input type="number" class="form-control" id="age" name="age">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputState" class="form-label">Nationality</label>
+                    <select id="nationality" name="nationality" class="form-select">
+                      <option selected>- None -</option>
+                      <option>DOM.REP</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputState" class="form-label">Status</label>
+                    <select id="status" name="status" class="form-select">
+                      <option selected>- None -</option>
+                      <option>A</option>
+                      <option>I</option>
+                    </select>
+                  </div>
+                  <div class="modal-footer">    
+                    <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" onclick="Mensaje()" class="btn bg-encabezado">Guardar</button>
+                  </div>
+            </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<!-- Fin Modal -->

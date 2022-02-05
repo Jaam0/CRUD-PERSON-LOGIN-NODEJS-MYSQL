@@ -41,7 +41,7 @@ BEGIN
 
     IF p_type_procedure = 'I' THEN
         INSERT 
-            INTO tbl_person (id,first_name,last_name,gender,age,nationatily,status) 
+            INTO tbl_person (id,first_name,last_name,gender,age,nationality,status) 
 			VALUES (null,UPPER(p_first_name),UPPER(p_last_name),UPPER(p_gender),p_age,UPPER(p_nationality),UPPER(p_status));
         COMMIT;
     ELSEIF p_type_procedure = 'U' THEN

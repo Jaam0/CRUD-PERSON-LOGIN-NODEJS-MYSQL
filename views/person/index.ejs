@@ -1,38 +1,54 @@
 <%- include('../layouts/header') %>
-
-<div class="row">
-    <div class="col-lg-6">
-        <table id="example" class="table table-hover table-striped display" style="width: 100%;">
-            <thead>
-                <tr class="fw-bold">
-                   <td>ID</td>
-                   <td>FIRST NAME</td>
-                   <td>LAST NAME</td>
-                   <td>GENDER</td>
-                   <td>AGE</td>
-                   <td>NATIONALITY</td>
-                   <td>STATUS</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <% rows.forEach(e=>{ %>
-                        <td><%= e.ID %></td>
-                        <td><%= e.FIRST_NAME %></td>
-                        <td><%= e.LAST_NAME %></td>
-                        <td><%= e.GENDER %></td>
-                        <td><%= e.AGE %></td>
-                        <td><%= e.NATIONALITY %></td>
-                        <td><%= e.STATUS %></td>
-                    <% }) %>
-                </tr>
-            </tbody>
-            <tfoot>
-        
-            </tfoot>
-        </table>
+<section class="my-3">
+    <div class="bg-light p-5  text-center">
+        <h1>PERSON</h1>
     </div>
-</div>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <button type="button"  onclick="changeActionSave()" class="btn btn-button my-2" data-bs-toggle="modal" data-bs-target="#agregar">New person</button> 
+                <table id="example" class="table table-hover  display table-light" style="width: 100%;">
+                    <thead>
+                        <tr class="fw-bold">
+                           <td class="">ID</td>
+                           <td>FIRST NAME</td>
+                           <td>LAST NAME</td>
+                           <td>GENDER</td>
+                           <td>AGE</td>
+                           <td>NATIONALITY</td>
+                           <td>STATUS</td>
+                           <td class="">ACTION</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% rows.forEach(e=>{ %>   
+                            <tr>
+                                <td class="fw-bold"><%= e.ID %></td>
+                                <td><%= e.FIRST_NAME %></td>
+                                <td><%= e.LAST_NAME %></td>
+                                <td><%= e.GENDER %></td>
+                                <td><%= e.AGE %></td>
+                                <td><%= e.NATIONALITY %></td>
+                                <td><%= e.STATUS %></td>
+                                <td class="">
+                                    <a href="/person/<%= e.ID %>" onclick="changeActionUpdate(<%= e.ID %>)" data-bs-toggle="modal" data-bs-target="#agregar"><i class="bi bi-pencil-square"></i></a>
+                                    <a onclick="confirmar(<%= e.ID %>)" href="#"><i class="bi bi-trash"></i></a>
+                                    <a href="#"><i class="bi bi-file-earmark-excel"></i></a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                        
+                    </tbody>
+                    <tfoot>
+                
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <%- include('../layouts/footer') %>
 
