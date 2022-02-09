@@ -1,0 +1,38 @@
+<%- include('../layouts/header') %>
+    <section class="p-5 form-signin">
+        <div class="container container-custom">
+            <div class="row py-5">
+                <div class="col-12">
+                    <div class="text-center">
+                        <h1>Welcome back!</h1>
+                    </div>
+                </div>
+            </div>
+           <div class="row px-3">
+            <form action="/login" method="post" class="" id="form">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-sm-10 col-12">
+                        <input  class="form-control" type="email" name="email" id="email" placeholder="Enter Email Address">
+                    </div>
+                </div>
+                <div class="row justify-content-center pt-2">
+                    <div class="col-lg-5 col-sm-10 col-12">
+                        <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="row justify-content-center pb-5 pt-3">
+                    <div class="col-lg-5 col-sm-10 col-12">
+                        <button type="submit" class="btn btn-primary form-control btn-user">Login</button>
+                        <hr>
+                        <button type="submit" class="btn btn-danger form-control btn-account">Create an Account!</button>
+                        <p class="mt-5 mb-3 text-muted text-center">© 2017–2021</p>
+                    </div>
+                </div>
+            </form>
+           </div>
+            
+        </div>   
+    </section>
+<%- include('../layouts/footer') %>
+
+

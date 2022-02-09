@@ -1,24 +1,28 @@
-const {Router, request, response} = require('express');
-const {showAll,save,update,showById,drop,downloadExcelFile,allRows} = require('../controllers/person.controller');
-// const {validarCampos,validarJWT,isAdminRole,haveRole} = require('../middlewares/index');
+const {Router} = require('express');
+const {check} = require('express-validator');
+const { route } = require('express/lib/application');
+
+const {login} = require('../controllers/login.controller');
+const {validarCampos} = require('../middlewares/index');
 
 
 const router = Router();
 
-router.get('/excelAll',allRows);
-router.get('/',showAll);
-router.get('/:id',showById);
-router.post('/save',save);
-// router.put('/:id',update);
-router.post('/update',update);
-router.get('/delete/:id',drop)
-router.get('/excel/:id',downloadExcelFile);
+// router.post('/login',
+// [
+//  check('username','El usuario es obligatorio').not().isEmpty(),
+//  check('password','La contraseña es obligatoria').not().isEmpty(),
+//  validarCampos
+// ],login);
 
+router.get('/',( req,res ) =>{
+    res.render('login/signin');
+});
 
+router.post('/login',login);
 
-// router.post('/save',(req,res)=>{
-//     res.send(req.body);
-// });
+module.exports = router;
+
 
 
 

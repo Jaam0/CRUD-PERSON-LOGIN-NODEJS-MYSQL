@@ -53,4 +53,19 @@ const confirmar = (id)=>{
               });
 };
 
+//Loarding data for DrownDownList from an api
+const dropDownData = () =>{
+    $(document).ready(function(){
+        $.get(`https://restcountries.com/v2/all`, function(data, status){
+           var myhtml ='<option selected>- None -</option>';
+           jQuery.each(data,(i,v)=>{
+                myhtml += '<option value="' + v.name.toUpperCase() + '">' + v.name.toUpperCase() + '</option>';
+           });
+
+           $('#nationality').html(myhtml);
+        });
+    });
+};
+
 ShowData();
+dropDownData();

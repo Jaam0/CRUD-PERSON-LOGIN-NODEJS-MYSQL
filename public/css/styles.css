@@ -4,10 +4,28 @@
 
 body {
     padding: 0;
-    /* background-color: #; */
+    background-color: #f8f9fa;
 }
 
 .btn-button {
     background-color: var(--main-bg-mycolor);
     color: white;
 }
+
+.container-custom {
+    background-color:white;
+    
+}
+
+.btn-user {
+    border-radius: 10rem;
+}
+
+.btn-account {
+    border-radius: 10rem;
+}
+
+#form input {    
+    border-radius: 10rem;
+}
+

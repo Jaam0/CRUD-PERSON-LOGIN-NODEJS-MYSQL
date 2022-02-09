@@ -8,6 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <button type="button"  onclick="changeActionSave()" class="btn btn-button my-2" data-bs-toggle="modal" data-bs-target="#agregar">New person</button> 
+                <a href="/person/excelAll" class="btn btn-danger">Export all person</a>
                 <table id="example" class="table table-hover  display table-light" style="width: 100%;">
                     <thead>
                         <tr class="fw-bold">
@@ -34,7 +35,7 @@
                                 <td class="">
                                     <a href="/person/<%= e.ID %>" onclick="changeActionUpdate(<%= e.ID %>)" data-bs-toggle="modal" data-bs-target="#agregar"><i class="bi bi-pencil-square"></i></a>
                                     <a onclick="confirmar(<%= e.ID %>)" href="#"><i class="bi bi-trash"></i></a>
-                                    <a href="#"><i class="bi bi-file-earmark-excel"></i></a>
+                                    <a href="/person/excel/<%= e.ID %>"><i class="bi bi-file-earmark-excel"></i></a>
                                 </td>
                             </tr>
                         <% }) %>

@@ -1,32 +1,32 @@
-const exceljs = require('exceljs');
 
-const data = [
-    {
-        id:1,
-        first_name:'Jessie Alvarez'
-    }
-];
+const firstLetterUpper = (myString) => {
+        const firstChar = myString.charAt(0).toUpperCase();
+        const otherChars = myString.substring(1, myString.length);
+    return firstChar.concat(otherChars);
+}
 
-const createExcel = (data) =>{
-    const workbook = new exceljs.Workbook();
-    const fileName = `Mydata.xlsx`;
-    const sheet = workbook.addWorksheet('Data');
-    
-    const reColums = [
-        {   header: 'Id', key: 'id'    },
-        {   header: 'First Name', key: 'first_name'}
-    ];
-
-    sheet.columns = reColums;
-
-    sheet.addRows(data);
-    workbook.xlsx.writeFile(fileName)
-    .then((e) =>{
-        console.log('It was created successfully!!');
-    })
-    .catch(()=> {
-        console.log('Something happen saving the EXCEL file')
-    });
+module.exports = {
+    firstLetterUpper
 };
 
-createExcel(data);
+
+const bcrypt = require('bcryptjs');
+
+// const myFunctions = {};
+
+// myFunctions.encryptPassword = async (password) =>{
+//   const salt = await bcrypt.genSaltSync(10);
+//    const newPassword = await bcrypt.hash(password, salt);
+//     return newPassword;
+// };
+
+// myFunctions.comparePassword = async (password,savePassword) =>{
+//     try {
+//        return await bcrypt.compare(password,savePassword);
+         
+//     } catch (e) {
+//         console.error(e);
+//     }
+// };
+
+// module.exports = myFunctions;

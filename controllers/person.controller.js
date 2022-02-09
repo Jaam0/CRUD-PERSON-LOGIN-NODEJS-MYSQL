@@ -1,5 +1,12 @@
 const { request, response, json } = require('express');
+const exceljs = require('exceljs');
 const conexion = require('../database/db');
+const {firstLetterUpper} = require('../helpers/util');
+
+let data = [];
+let fields = [];
+let columnsCustom = [];
+let fileName = '';
 
 exports.showAll = async(req = request, res = response) => {
     const queryMain = `SELECT ID,FIRST_NAME,LAST_NAME,GENDER,AGE,NATIONALITY,STATUS FROM TBL_PERSON`;
@@ -94,4 +101,93 @@ exports.drop = async(req,res) =>{
         return res.status(500).json({msg: 'Internal error on the server - Contact to administrator'});
     });
     res.status(200).redirect('/person');
+};
+
+exports.downloadExcelFile = async (req,res) =>{
+    const id = req.params.id;
+    const queryMain = `SELECT ID,FIRST_NAME,LAST_NAME,GENDER,AGE,NATIONALITY,STATUS FROM TBL_PERSON WHERE ID = ${Number(id)}`;
+    
+    console.log('Esta pasando por aqui');
+    if ( !Number(id)) return res.status(406).json({msg: 'Invalid identifier - Person'});
+
+    const [person] = await Promise.all([
+        conexion.query(queryMain)
+    ])
+    .catch((error) =>{
+        console.log(`There was an error trying to consult on the database - tbl_person:${error}`);
+        return res.status(500).json({msg: 'Internal error on the server - Contact to administrator'});
+    });
+
+    for (let index = 0; index < person.length; index++) {
+       fields = Object.getOwnPropertyNames(person[index]);
+       fileName = `${person[index].FIRST_NAME} ${person[index].LAST_NAME}.xlsx`;
+    }
+
+    columnsCustom = [];
+    for (let index = 0; index < fields.length; index++) { 
+        columnsCustom.push({header:firstLetterUpper(fields[index]), key:fields[index]});
+    }
+
+    const workbook = new exceljs.Workbook();
+    const sheet = workbook.addWorksheet('Data');
+    
+    sheet.columns = columnsCustom;
+    sheet.addRows(person);
+
+    await workbook.xlsx.writeBuffer()
+    .then((buffer) =>{
+        console.log('Sending buffer');
+        res.set({'Content-Type': 'application/octet-stream',
+                 'Content-Disposition': 'attachment; filename="' + fileName + '"',
+                 'X-Processed-FileName': fileName
+         });
+
+      return res.status(200).send(buffer);
+    })
+    .catch(()=> {
+        console.log(err.message);
+        return res.status(200).json({error: err.message})
+    });
+};
+
+exports.allRows = async (req,res) =>{
+    const queryMain = `SELECT ID,FIRST_NAME,LAST_NAME,GENDER,AGE,NATIONALITY,STATUS FROM TBL_PERSON`;
+    
+    const [person] = await Promise.all([
+        conexion.query(queryMain)
+    ])
+    .catch((error) =>{
+        console.log(`There was an error trying to consult on the database - tbl_person:${error}`);
+        return res.status(500).json({msg: 'Internal error on the server - Contact to administrator'});
+    });
+
+    for (let index = 0; index < person.length; index++) {
+       fields = Object.getOwnPropertyNames(person[index]);
+    }
+
+    columnsCustom = [];
+    for (let index = 0; index < fields.length; index++) { 
+        columnsCustom.push({header:firstLetterUpper(fields[index]), key:fields[index]});
+    }
+    const workbook = new exceljs.Workbook();
+    fileName = `AllPerson.xlsx`;
+    const sheet = workbook.addWorksheet('Data');
+    
+    sheet.columns = columnsCustom;
+    sheet.addRows(person);
+
+    await workbook.xlsx.writeBuffer()
+    .then((buffer) =>{
+        console.log('Sending buffer');
+        res.set({'Content-Type': 'application/octet-stream',
+                 'Content-Disposition': 'attachment; filename="' + fileName + '"',
+                 'X-Processed-FileName': fileName
+         });
+
+      return res.status(200).send(buffer);
+    })
+    .catch(()=> {
+        console.log(err.message);
+        return res.status(200).json({error: err.message})
+    });
 };

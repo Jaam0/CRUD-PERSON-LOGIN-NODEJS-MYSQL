@@ -1,5 +1,6 @@
 require('dotenv').config();
 const person = require('../routes/person.routes');
+const login = require('../routes/login.routes');
 const morgan = require('morgan');
 const express = require('express');
 
@@ -11,6 +12,7 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
         this.personPath = '/person';
+        this.loginPath ='/';
         //Conectar a la base de datos
         // this.connectarDB();
         //middlewares
@@ -36,6 +38,7 @@ class Server {
 
     routes() {
        this.app.use(this.personPath,person);
+       this.app.use(this.loginPath,login);
     };
     
     listen() {
